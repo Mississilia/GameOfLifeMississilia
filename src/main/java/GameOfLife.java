@@ -19,7 +19,6 @@ public class GameOfLife {
     }
 
     public int countlivingNeighbours(int row, int column) {
-
         int[][] cellsToCheck = {
                 {row - 1, column - 1},
                 {row - 1, column},
@@ -30,20 +29,14 @@ public class GameOfLife {
                 {row + 1, column - 1},
                 {row, column - 1},
         };
-
         int livingNeighbours = 0;
-
         for (int i = 0; i < cellsToCheck.length; i++) {
-
             int rowToCheck = cellsToCheck[i][0];
             int colTocheck = cellsToCheck[i][1];
-
             if (isInTheGrid(rowToCheck, colTocheck) && isAlive(rowToCheck, colTocheck)) {
                 livingNeighbours ++ ;
             }
-
         }
-
         return livingNeighbours;
     }
 
@@ -52,13 +45,9 @@ public class GameOfLife {
     }
 
     public void computeNextGeneration() {
-
         int[][] nextGenerationGrid = new int[rowCount][columnCount];
-
         for (int y = 0; y < rowCount; y++) {
-
             for (int x = 0; x < columnCount; x++) {
-
                 if (thisCellIsAliveAndHasLessThanTwoLivingNeighbours(y, x)) {
                     nextGenerationGrid[y][x] = DEAD_CELL;
                 } else if (thisCellIsAliveAndHasTwoOrThreeLivingNeighbours(y, x)) {
@@ -73,7 +62,6 @@ public class GameOfLife {
             }
 
         }
-
         grid = nextGenerationGrid.clone();
     }
 
@@ -96,7 +84,6 @@ public class GameOfLife {
         int neighboursCount = countlivingNeighbours(row, column);
         return isAlive(row, column) && neighboursCount < 2;
     }
-
 
     public boolean isAlive(int row, int column) {
         return grid[row][column] == LIVING_CELL;
